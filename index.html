@@ -3,89 +3,617 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet ArkX Assurance - Charte Projet</title>
+    <title>Projet ArkX - Charte Projet 2 Semaines</title>
     <style>
-        /* 👉 Ton CSS inchangé ici (je l’ai laissé tel quel) */
-        /* ... garde TOUT ton CSS ici ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #EFF6FF 0%, #E0E7FF 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            font-size: 32px;
+            color: #1F2937;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 18px;
+            color: #6B7280;
+            margin-bottom: 15px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        .badge-blue {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+        .badge-green {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        .tabs {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #E5E7EB;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            padding: 15px 25px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 15px;
+            color: #6B7280;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .tab-btn:hover {
+            color: #1F2937;
+        }
+        .tab-btn.active {
+            color: #2563EB;
+            border-bottom-color: #2563EB;
+        }
+        .content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            font-size: 24px;
+            color: #1F2937;
+            margin-bottom: 15px;
+        }
+        .checklist {
+            list-style: none;
+        }
+        .checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        .checklist li::before {
+            content: "✓";
+            color: #10B981;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .card-green {
+            border-left: 4px solid #10B981;
+            background: #F0FDF4;
+        }
+        .card-red {
+            border-left: 4px solid #EF4444;
+            background: #FEF2F2;
+        }
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .card ul {
+            list-style: none;
+            font-size: 14px;
+        }
+        .card ul li {
+            margin-bottom: 5px;
+        }
+        .phase {
+            border: 1px solid #E5E7EB;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .phase-header {
+            background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+        .task {
+            padding: 15px 20px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .task:last-child {
+            border-bottom: none;
+        }
+        .task-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .task-meta {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .task-duration, .task-owner {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        .task-duration {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+        .task-owner {
+            background: #E9D5FF;
+            color: #6B21A8;
+        }
+        .task-details {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #E5E7EB;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #F9FAFB;
+            font-weight: 600;
+        }
+        .raci-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .raci-r { background: #DBEAFE; color: #1E40AF; }
+        .raci-a { background: #D1FAE5; color: #065F46; }
+        .raci-c { background: #FEF3C7; color: #92400E; }
+        .raci-i { background: #F3F4F6; color: #374151; }
+        .risk {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid;
+        }
+        .risk-critical {
+            background: #FEE2E2;
+            border-color: #FCA5A5;
+        }
+        .risk-important {
+            background: #FFEDD5;
+            border-color: #FED7AA;
+        }
+        .risk-controlled {
+            background: #D1FAE5;
+            border-color: #A7F3D0;
+        }
+        .risk h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .risk-meta {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .risk-mitigation {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .kpi {
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+            border: 2px solid #93C5FD;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1E3A8A;
+        }
+        .kpi-name {
+            font-weight: 600;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-
-        <!-- Header -->
         <div class="header">
-            <h1>Projet ArkX Assurance</h1>
+            <h1>🚗 Projet ArkX Assurance</h1>
             <p>Application Salesforce - Gestion Sinistres Automobiles</p>
-            <div class="badges">
+            <div>
                 <span class="badge badge-blue">⏱️ Durée: 2 semaines</span>
                 <span class="badge badge-green">🎯 MVP Fonctionnel</span>
             </div>
         </div>
 
-        <!-- Tabs -->
-        <div class="tabs-container">
-            <div class="tabs">
-                <button class="tab active" data-tab="charter">📋 Charte Projet</button>
-                <button class="tab" data-tab="gantt">📅 Planning Gantt</button>
-                <button class="tab" data-tab="raci">👥 RACI</button>
-                <button class="tab" data-tab="risks">⚠️ Risques</button>
-                <button class="tab" data-tab="kpis">📊 KPIs</button>
+        <div class="tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('charter')">📋 Charte Projet</button>
+                <button class="tab-btn" onclick="showTab('gantt')">📅 Planning Gantt</button>
+                <button class="tab-btn" onclick="showTab('raci')">👥 RACI</button>
+                <button class="tab-btn" onclick="showTab('risks')">⚠️ Risques</button>
+                <button class="tab-btn" onclick="showTab('kpis')">📊 KPIs</button>
             </div>
         </div>
 
-        <!-- Content -->
         <div class="content">
+            <!-- CHARTE TAB -->
+            <div id="charter" class="tab-content active">
+                <div class="section">
+                    <h2>🎯 Objectifs du Projet</h2>
+                    <ul class="checklist">
+                        <li>Livrer un MVP fonctionnel permettant la création, consultation et suivi des sinistres automobiles</li>
+                        <li>Digitaliser le processus de déclaration avec upload de documents (photos, constats)</li>
+                        <li>Fournir un tableau de bord de suivi pour les gestionnaires</li>
+                        <li>Automatiser les notifications et validations de base</li>
+                    </ul>
+                </div>
 
-            <!-- Charter -->
-            <div id="tab-charter" class="tab-content active">
-                <h2>Charte Projet</h2>
-                <p>Contenu de la charte…</p>
+                <div class="section">
+                    <h2>📦 Périmètre</h2>
+                    <div class="grid-2">
+                        <div class="card card-green">
+                            <h3>✅ Inclus dans le MVP</h3>
+                            <ul>
+                                <li>• Création sinistre (formulaire complet)</li>
+                                <li>• Gestion véhicules & polices</li>
+                                <li>• Upload/consultation documents</li>
+                                <li>• Liste sinistres avec filtres</li>
+                                <li>• Écran détails sinistre</li>
+                                <li>• Changement statut & commentaires</li>
+                                <li>• Notifications email automatiques</li>
+                                <li>• Dashboards & rapports simples</li>
+                                <li>• Validations métier (Flow)</li>
+                            </ul>
+                        </div>
+                        <div class="card card-red">
+                            <h3>❌ Hors périmètre (V2)</h3>
+                            <ul>
+                                <li>• Messagerie temps réel (chat)</li>
+                                <li>• Intégrations systèmes externes</li>
+                                <li>• Module expertise terrain</li>
+                                <li>• Portail client web</li>
+                                <li>• Calcul indemnisation automatique</li>
+                                <li>• Signature électronique</li>
+                                <li>• Analytics avancés (IA)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>✅ Critères de Succès</h2>
+                    <ul class="checklist">
+                        <li>Application livrée et fonctionnelle en J14</li>
+                        <li>0 bug bloquant en production</li>
+                        <li>Déclaration sinistre possible en moins de 3 minutes</li>
+                        <li>Satisfaction utilisateurs ≥ 4/5</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Gantt -->
-            <div id="tab-gantt" class="tab-content">
-                <h2>Planning Gantt</h2>
-                <p>Ton planning ici…</p>
+            <!-- GANTT TAB -->
+            <div id="gantt" class="tab-content">
+                <div class="phase">
+                    <div class="phase-header">Semaine 1 - Fondations</div>
+                    <div class="task">
+                        <div class="task-name">Jour 1 - Kickoff & Cadrage</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">CP</span>
+                        </div>
+                        <div class="task-details">Réunion lancement, validation périmètre, setup environnement</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jours 1-2 - Modèle de données</div>
+                        <div class="task-meta">
+                            <span class="task-duration">2j</span>
+                            <span class="task-owner">Admin/Dev</span>
+                        </div>
+                        <div class="task-details">Création objets: Claim__c, Vehicle__c, Policy__c, Document__c + champs</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 2 - Règles métier</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">Admin</span>
+                        </div>
+                        <div class="task-details">Validation rules, picklists statuts, workflows de base</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jours 3-4 - LWC Formulaire</div>
+                        <div class="task-meta">
+                            <span class="task-duration">2j</span>
+                            <span class="task-owner">Dev</span>
+                        </div>
+                        <div class="task-details">Composant création sinistre avec validations front</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 4 - Flow Backend</div>
+                        <div class="task-meta">
+                            <span class="task-duration">0.5j</span>
+                            <span class="task-owner">Dev</span>
+                        </div>
+                        <div class="task-details">Record-triggered flow pour validations et assignations</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 5 - LWC Liste & Tests</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">Dev</span>
+                        </div>
+                        <div class="task-details">Tableau de bord avec filtres + tests unitaires</div>
+                    </div>
+                </div>
+
+                <div class="phase">
+                    <div class="phase-header">Semaine 2 - Finalisation</div>
+                    <div class="task">
+                        <div class="task-name">Jour 6 - Gestion Documents</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">Dev</span>
+                        </div>
+                        <div class="task-details">Upload/preview/delete avec ContentDocument</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 7 - Page Détails</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">Dev</span>
+                        </div>
+                        <div class="task-details">Écran détail sinistre + actions rapides + commentaires</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 7 PM - Notifications</div>
+                        <div class="task-meta">
+                            <span class="task-duration">0.5j</span>
+                            <span class="task-owner">Admin</span>
+                        </div>
+                        <div class="task-details">Flow notifications email sur changement statut</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 8 - Dashboards</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">Admin</span>
+                        </div>
+                        <div class="task-details">Reports & dashboards Lightning pour KPIs</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 9 - Tests E2E</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">Dev/Admin</span>
+                        </div>
+                        <div class="task-details">Tests fonctionnels complets + corrections bugs</div>
+                    </div>
+                    <div class="task">
+                        <div class="task-name">Jour 10 - Livraison</div>
+                        <div class="task-meta">
+                            <span class="task-duration">1j</span>
+                            <span class="task-owner">CP</span>
+                        </div>
+                        <div class="task-details">Documentation + démo + passation</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- RACI -->
-            <div id="tab-raci" class="tab-content">
+            <!-- RACI TAB -->
+            <div id="raci" class="tab-content">
                 <h2>Matrice RACI</h2>
-                <p>Le tableau RACI ici…</p>
+                <p style="margin-bottom: 15px; color: #6B7280;"><strong>R</strong>=Responsable | <strong>A</strong>=Approuve | <strong>C</strong>=Consulté | <strong>I</strong>=Informé</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Activité</th>
+                            <th>Chef Projet</th>
+                            <th>Sponsor</th>
+                            <th>Utilisateurs</th>
+                            <th>Développeur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: left;">Recueil du besoin</td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                            <td><span class="raci-badge raci-a">A</span></td>
+                            <td><span class="raci-badge raci-c">C</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Modélisation données</td>
+                            <td><span class="raci-badge raci-a">A</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                            <td><span class="raci-badge raci-c">C</span></td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Développement LWC</td>
+                            <td><span class="raci-badge raci-a">A</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Configuration Salesforce</td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                            <td><span class="raci-badge raci-a">A</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                            <td><span class="raci-badge raci-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Tests techniques</td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Recette utilisateur</td>
+                            <td><span class="raci-badge raci-c">C</span></td>
+                            <td><span class="raci-badge raci-a">A</span></td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Mise en production</td>
+                            <td><span class="raci-badge raci-r">R</span></td>
+                            <td><span class="raci-badge raci-a">A</span></td>
+                            <td><span class="raci-badge raci-i">I</span></td>
+                            <td><span class="raci-badge raci-c">C</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Risks -->
-            <div id="tab-risks" class="tab-content">
-                <h2>Risques</h2>
-                <p>Liste des risques…</p>
+            <!-- RISKS TAB -->
+            <div id="risks" class="tab-content">
+                <h2>Matrice des Risques</h2>
+                <div class="risk risk-critical">
+                    <h3>🔴 Compréhension incomplète du besoin</h3>
+                    <div class="risk-meta">
+                        <strong>Impact:</strong> Élevé | <strong>Probabilité:</strong> Moyen
+                    </div>
+                    <div class="risk-mitigation">
+                        <strong>Mitigation:</strong> Ateliers quotidiens + validation continue avec sponsor
+                    </div>
+                </div>
+                <div class="risk risk-critical">
+                    <h3>🔴 Retard développement (délais courts)</h3>
+                    <div class="risk-meta">
+                        <strong>Impact:</strong> Élevé | <strong>Probabilité:</strong> Élevé
+                    </div>
+                    <div class="risk-mitigation">
+                        <strong>Mitigation:</strong> Focus MVP strict + réutilisation composants standard
+                    </div>
+                </div>
+                <div class="risk risk-important">
+                    <h3>🟠 Tests utilisateurs retardés</h3>
+                    <div class="risk-meta">
+                        <strong>Impact:</strong> Moyen | <strong>Probabilité:</strong> Élevé
+                    </div>
+                    <div class="risk-mitigation">
+                        <strong>Mitigation:</strong> Créneaux fixes J9 + validation continue
+                    </div>
+                </div>
+                <div class="risk risk-important">
+                    <h3>🟠 Bugs découverts tard</h3>
+                    <div class="risk-meta">
+                        <strong>Impact:</strong> Moyen | <strong>Probabilité:</strong> Moyen
+                    </div>
+                    <div class="risk-mitigation">
+                        <strong>Mitigation:</strong> Tests continus dès J5 + buffer correction J9
+                    </div>
+                </div>
+                <div class="risk risk-controlled">
+                    <h3>🟢 Problème mise en production</h3>
+                    <div class="risk-meta">
+                        <strong>Impact:</strong> Moyen | <strong>Probabilité:</strong> Faible
+                    </div>
+                    <div class="risk-mitigation">
+                        <strong>Mitigation:</strong> Tests en sandbox + plan rollback
+                    </div>
+                </div>
             </div>
 
-            <!-- KPIs -->
-            <div id="tab-kpis" class="tab-content">
-                <h2>KPIs</h2>
-                <p>Indicateurs…</p>
+            <!-- KPI TAB -->
+            <div id="kpis" class="tab-content">
+                <h2>Indicateurs de Pilotage (KPIs)</h2>
+                <div class="kpi">
+                    <div class="kpi-value">0%</div>
+                    <div class="kpi-name">% Avancement</div>
+                    <div style="margin-top: 5px; color: #374151; font-size: 14px;">Cible: 100% en J14</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-name">Bugs bloquants</div>
+                    <div style="margin-top: 5px; color: #374151; font-size: 14px;">Cible: 0</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-value">0%</div>
+                    <div class="kpi-name">Couverture tests</div>
+                    <div style="margin-top: 5px; color: #374151; font-size: 14px;">Cible: 100%</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-value">N/A</div>
+                    <div class="kpi-name">Satisfaction utilisateur</div>
+                    <div style="margin-top: 5px; color: #374151; font-size: 14px;">Cible: ≥ 4/5</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-value">0%</div>
+                    <div class="kpi-name">Respect planning</div>
+                    <div style="margin-top: 5px; color: #374151; font-size: 14px;">Cible: ≤ 100%</div>
+                </div>
             </div>
-
         </div>
     </div>
 
-<script>
-/* ⭐ Script tabs qui fonctionne sur GitHub Pages */
-const tabs = document.querySelectorAll(".tab");
-const contents = document.querySelectorAll(".tab-content");
-
-tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-        const target = "tab-" + tab.dataset.tab;
-
-        tabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-
-        contents.forEach(c => c.classList.remove("active"));
-        document.getElementById(target).classList.add("active");
-    });
-});
-</script>
-
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
